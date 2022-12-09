@@ -1,7 +1,9 @@
-
 import 'package:flutter/material.dart';
+import 'package:lab193004/services/notifications_api.dart';
 import 'package:nanoid/nanoid.dart';
+import 'package:provider/provider.dart';
 import '../model/list_item.dart';
+import 'package:lab193004/services/notifications_api.dart';
 
 class NovElement extends StatefulWidget{
 
@@ -15,11 +17,28 @@ class NovElement extends StatefulWidget{
 
 class _NovElementState extends State<NovElement> {
 
+  final NotificationAPI notificationService = NotificationAPI();
+
+  @override
+  void initState() {
+    notificationService.initialize();
+    super.initState();
+  }
+
   final _subjectController = TextEditingController();
   final _dateTimeController = TextEditingController();
 
   String subject = "";
   DateTime dateTime = DateTime.now();
+
+  static List<Map> convertListItemsToMap(List<ListItem>? listItems) {
+    List<Map> items = [];
+    listItems!.forEach((ListItem listItem) {
+      Map item = listItem.toMap();
+      items.add(item);
+    });
+    return items;
+  }
 
   void _submitData() {
     if(_subjectController.text.isEmpty) {
@@ -56,6 +75,7 @@ class _NovElementState extends State<NovElement> {
 
   @override
   Widget build(BuildContext context) {
+
     return Container(
       padding: EdgeInsets.all(8),
       child: Column( children: [
@@ -77,7 +97,14 @@ class _NovElementState extends State<NovElement> {
           onTap: _showTimePicker,
         ),
         FloatingActionButton(
-          onPressed: _submitData,
+          onPressed: () async {
+            await notificationService.showNotification(
+              id: 0,
+              title: "Title",
+              body: "This event is starting now!"
+            );
+            _submitData;
+          },
           child: Icon(Icons.add),
         )
       ],

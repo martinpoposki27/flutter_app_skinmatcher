@@ -8,4 +8,13 @@ class ListItem {
 
   ListItem(@required this.id, @required this.subject, @required this.dateTime);
 
+
+  Map<dynamic, dynamic> toMap() {
+    return {
+      'id': id,
+      'subject': subject,
+      'dateTime': dateTime,
+    };
+  }
+
 }
