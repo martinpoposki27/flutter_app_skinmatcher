@@ -17,11 +17,11 @@ class NovElement extends StatefulWidget{
 
 class _NovElementState extends State<NovElement> {
 
-  final NotificationAPI notificationService = NotificationAPI();
+  //final NotificationAPI notificationService = NotificationAPI();
 
   @override
   void initState() {
-    notificationService.initialize();
+    //notificationService.initialize();
     super.initState();
   }
 
@@ -96,17 +96,12 @@ class _NovElementState extends State<NovElement> {
           onSubmitted: (_) => _submitData(),
           onTap: _showTimePicker,
         ),
-        FloatingActionButton(
-          onPressed: () async {
-            await notificationService.showNotification(
-              id: 0,
-              title: "Title",
-              body: "This event is starting now!"
-            );
+        ElevatedButton(
+          child: const Text('Add'),
+          onPressed: () {
             _submitData;
           },
-          child: Icon(Icons.add),
-        )
+        ),
       ],
       ),
     );

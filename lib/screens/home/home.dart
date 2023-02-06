@@ -2,9 +2,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:lab193004/screens/maps/map_view.dart';
 import 'package:lab193004/services/auth.dart';
 import 'package:table_calendar/table_calendar.dart';
 import '../../model/list_item.dart';
+import '../../services/notification_service.dart';
 import 'exams_calendar.dart';
 import '../../widgets/nov_element.dart';
 import '../../services/database.dart';
@@ -19,14 +21,18 @@ class Home extends StatefulWidget {
 
 class _MyHomePageState extends State<Home> {
 
+  late final LocalNotificationsService notificationsService;
+
   final AuthService _auth = AuthService();
 
   List<ListItem> examList = [];
 
-  // @override
-  // void initState() {
-  //   examList = [];
-  // }
+  @override
+  void initState() {
+    notificationsService = LocalNotificationsService();
+    notificationsService.initialize();
+    super.initState();
+  }
 
   void _addItemFunction(BuildContext ct) {
     showModalBottomSheet(context: ct, builder: (_) {
@@ -74,6 +80,10 @@ class _MyHomePageState extends State<Home> {
         appBar: AppBar(
           title: Text("Student Planner"),
           actions: <Widget>[
+            IconButton(
+                onPressed: () async { Navigator.push( context, MaterialPageRoute(builder: (context) => MapSample()));},
+                icon: Icon(Icons.map)
+            ),
             IconButton(onPressed: () => _addItemFunction(context), icon: Icon(Icons.add)),
             IconButton(onPressed: () async { await _auth.singOut(); },
                 icon: Icon(Icons.logout)),

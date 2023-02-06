@@ -6,6 +6,8 @@ import 'package:lab193004/model/list_item.dart';
 import 'package:provider/provider.dart';
 import '../../services/auth.dart';
 import '../../services/database.dart';
+import '../../services/notification_service.dart';
+import '../../services/notifications_service.dart';
 
 class ExamsList extends StatefulWidget {
   const ExamsList({Key? key}) : super(key: key);
@@ -15,6 +17,15 @@ class ExamsList extends StatefulWidget {
 }
 
 class _ExamsListState extends State<ExamsList> {
+
+  late final LocalNotificationsService notificationsService;
+
+  @override
+  void initState() {
+    notificationsService = LocalNotificationsService();
+    notificationsService.initialize();
+    super.initState();
+  }
 
   static List<Map> convertListItemsToMap(List<ListItem>? listItems) {
     List<Map> items = [];
@@ -37,6 +48,16 @@ class _ExamsListState extends State<ExamsList> {
         examList.removeWhere((element) => element.id == id);
       });
       print(examList);
+      await DatabaseService(FirebaseAuth.instance.currentUser!.uid).updateUserData(convertListItemsToMap(examList), " name");
+    }
+
+    void notificationScheduler(int index) async {
+      ListItem item = examList[index];
+      DateTime dateTime = item.dateTime;
+      WidgetsFlutterBinding.ensureInitialized();
+      NotificationsService().initializeNotification();
+      NotificationsService().showNotification(1, item.subject, item.subject, dateTime);
+      //notificationsService.showScheduledNotification(id: 0, title: item.subject, body: item.subject, seconds: 5);
       await DatabaseService(FirebaseAuth.instance.currentUser!.uid).updateUserData(convertListItemsToMap(examList), " name");
     }
 
@@ -75,10 +96,20 @@ class _ExamsListState extends State<ExamsList> {
             child: ListTile(
               title: Text(examList[index].subject),
               subtitle: Text("Date: " + examList[index].dateTime.day.toString() + "." + examList[index].dateTime.month.toString() + "." + examList[index].dateTime.year.toString() + "     Time: " + examList[index].dateTime.hour.toString() + ":" + examList[index].dateTime.minute.toString()),
-              trailing: IconButton(
-                  onPressed: () => _deleteListItem(examList[index].id),
-                  icon: Icon(Icons.delete)),
-            )
+              trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                        onPressed: () => notificationScheduler(index),
+                        icon: Icon(Icons.notifications_active)
+                    ),
+                    IconButton(
+                      onPressed: () => _deleteListItem(examList[index].id),
+                      icon: Icon(Icons.delete)
+                      ),
+                  ]
+              )
+           )
         );
       },
         itemCount: examList.length,

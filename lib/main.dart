@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lab193004/model/user.dart';
+import 'package:lab193004/screens/maps/map_view.dart';
 import 'package:lab193004/screens/wrapper.dart';
 import 'package:lab193004/services/auth.dart';
 import 'package:lab193004/widgets/nov_element.dart';
