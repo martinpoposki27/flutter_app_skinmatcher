@@ -26,6 +26,7 @@ class _NovElementState extends State<NovElement> {
   }
 
   final _subjectController = TextEditingController();
+  final _locationController = TextEditingController();
   final _dateTimeController = TextEditingController();
 
   String subject = "";
@@ -45,9 +46,13 @@ class _NovElementState extends State<NovElement> {
       return;
     }
     final enteredSubject = _subjectController.text;
+    // if(_locationController.text.isEmpty) {
+    //   return;
+    // }
+    final enteredLocation = _locationController.text;
     // final enteredDateTime = DateTime.parse(_dateTimeController.text);
     // print(enteredDateTime);
-    final newItem = ListItem(nanoid(5), enteredSubject, dateTime);
+    final newItem = ListItem(nanoid(5), enteredSubject, dateTime, enteredLocation);
     widget.addItem(newItem);
     Navigator.of(context).pop();
 
@@ -82,6 +87,11 @@ class _NovElementState extends State<NovElement> {
         TextField(
           controller: _subjectController,
           decoration: InputDecoration(labelText: "Name of the subject"),
+          onSubmitted: (_) => _submitData(),
+        ),
+        TextField(
+          controller: _locationController,
+          decoration: InputDecoration(labelText: "Location for the reminder"),
           onSubmitted: (_) => _submitData(),
         ),
         TextField(

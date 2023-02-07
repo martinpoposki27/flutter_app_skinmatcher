@@ -33,7 +33,7 @@ class DatabaseService {
     for(var doc in snapshot.docs) {
       if (doc.id == FirebaseAuth.instance.currentUser?.uid) {
         for (var arg in doc.get("exams")) {
-          ListItem listItem = ListItem(arg["id"], arg["subject"], (arg["dateTime"] as Timestamp).toDate());
+          ListItem listItem = ListItem(arg["id"], arg["subject"], (arg["dateTime"] as Timestamp).toDate(), arg["location"]);
           list.add(listItem);
         }
       }

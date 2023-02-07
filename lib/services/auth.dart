@@ -10,7 +10,7 @@ class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   List<ListItem> exams = [
-     ListItem("T0", "Test item", DateTime.now())
+     ListItem("T0", "Test item", DateTime.now(), "FINKI")
   ];
 
   Future<String?> getUID() async {

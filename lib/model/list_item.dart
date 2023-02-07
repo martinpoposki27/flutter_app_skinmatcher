@@ -5,8 +5,9 @@ class ListItem {
   final String id;
   final String subject;
   final DateTime dateTime;
+  final String location;
 
-  ListItem(@required this.id, @required this.subject, @required this.dateTime);
+  ListItem(@required this.id, @required this.subject, @required this.dateTime, this.location);
 
 
   Map<dynamic, dynamic> toMap() {
@@ -14,6 +15,7 @@ class ListItem {
       'id': id,
       'subject': subject,
       'dateTime': dateTime,
+      'location': location
     };
   }
 
