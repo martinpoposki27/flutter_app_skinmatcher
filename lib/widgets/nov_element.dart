@@ -42,6 +42,7 @@ class _NovElementState extends State<NovElement> {
   }
 
   void _submitData() {
+    setState(() {
     if(_subjectController.text.isEmpty) {
       return;
     }
@@ -55,7 +56,7 @@ class _NovElementState extends State<NovElement> {
     final newItem = ListItem(nanoid(5), enteredSubject, dateTime, enteredLocation);
     widget.addItem(newItem);
     Navigator.of(context).pop();
-
+    });
   }
 
   void _showDatePicker() {
@@ -110,7 +111,19 @@ class _NovElementState extends State<NovElement> {
           child: const Text('Add'),
           onPressed: () {
             _submitData;
+            Navigator.pop(context);
           },
+        ),
+        Text(
+          'If the "Add" button is not working, please use the',
+          textAlign: TextAlign.center,
+          overflow: TextOverflow.ellipsis,
+          style: const TextStyle(fontWeight: FontWeight.normal, color: Colors.deepOrange),
+        ),
+        Text('"Done" button from your keyboard!',
+          textAlign: TextAlign.center,
+          overflow: TextOverflow.ellipsis,
+          style: const TextStyle(fontWeight: FontWeight.normal, color: Colors.deepOrange),
         ),
       ],
       ),
