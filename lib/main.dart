@@ -24,9 +24,16 @@ class MyApp extends StatelessWidget {
       initialData: null,
       value: AuthService().user,
       child: MaterialApp(
-        title: 'Lab 3 193004',
+        title: 'SkinMatcher',
         theme: ThemeData(
-          primarySwatch: Colors.red,
+          colorScheme: ColorScheme.fromSwatch().copyWith(
+            primary: Colors.red.shade200,
+            secondary: Colors.red.shade400,
+            // or from RGB
+            //
+            // primary: const Color(0xFF343A40),
+            // secondary: const Color(0xFFFFC107),
+          ),
         ),
         home: Wrapper(),
       ),

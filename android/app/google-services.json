@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "1035796584830",
-    "project_id": "mislabdata",
-    "storage_bucket": "mislabdata.appspot.com"
+    "project_number": "420632826858",
+    "project_id": "skinmatcher",
+    "storage_bucket": "skinmatcher.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1035796584830:android:eb2de4d6722e5382cfbb2f",
+        "mobilesdk_app_id": "1:420632826858:android:6ea409c4e66c5d0ad19893",
         "android_client_info": {
-          "package_name": "com.example.lab193004"
+          "package_name": "com.example.homework193004"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1035796584830-7e9tm4p8n47mi4l0e646iivssid0kgv7.apps.googleusercontent.com",
+          "client_id": "420632826858-aj5i3spuktgbpsga92o7lqd9u3rinls0.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyABp3VBB1iWh_tFL5La7CxeAcLUjwCGfxs"
+          "current_key": "AIzaSyCsMqT5xqIgHJM8On0baguHgE82W0EZh9Q"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1035796584830-7e9tm4p8n47mi4l0e646iivssid0kgv7.apps.googleusercontent.com",
+              "client_id": "420632826858-aj5i3spuktgbpsga92o7lqd9u3rinls0.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -10,7 +10,10 @@ class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   List<ListItem> exams = [
-     ListItem("T0", "Test item", DateTime.now(), "FINKI")
+     ListItem("T0", "Melem cream", "3856007901409", DateTime.now(), "Super Tinex, Ohrid",
+         true, true, true, true, false, false, false, false, true, true),
+    ListItem("T1", "Spirulina cream", "5234554456548", DateTime.now(), "Alfa Lab, Skopje",
+        true, false, true, false, false, false, false, true, false, true),
   ];
 
   Future<String?> getUID() async {
@@ -67,7 +70,9 @@ class AuthService {
 
       print(convertListItemsToMap(exams));
 
-      await DatabaseService(user!.uid).updateUserData(convertListItemsToMap(exams), " name");
+      await DatabaseService(user!.uid).updateUserProducts(convertListItemsToMap(exams)
+          //, "No name entered", "Dry", 100, false, false
+      );
 
       return _customUserWrapper(user);
     }catch (e) {
