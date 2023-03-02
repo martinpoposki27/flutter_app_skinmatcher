@@ -10,10 +10,18 @@ class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   List<ListItem> exams = [
-     ListItem("T0", "Melem cream", "3856007901409", DateTime.now(), "Super Tinex, Ohrid",
+    ListItem("T0", "Melem cream", "3856007901409", DateTime.now(), "Super Tinex, Ohrid",
          true, true, true, true, false, false, false, false, true, true),
     ListItem("T1", "Spirulina cream", "5234554456548", DateTime.now(), "Alfa Lab, Skopje",
         true, false, true, false, false, false, false, true, false, true),
+    ListItem("T2", "Nivea Smooth", "4005808237845", DateTime.now(), "Super Tinex, Ohrid",
+        false, true, false, true, true, false, false, false, true, true),
+    ListItem("T3", "Cliven multipurpose", "8014530000180", DateTime.now(), "Alfa Lab, Skopje",
+        false, false, true, false, false, false, false, true, false, true),
+    ListItem("T4", "Alverde CC cream", "8606017375333", DateTime.now(), "DM Skopje City Mall",
+        true, true, true, true, false, false, true, false, true, true),
+    ListItem("T5", "Afrodita Clean! foam", "3831070650027", DateTime.now(), "East Gate Mall, Skopje",
+        true, false, true, false, false, true, false, true, false, true),
   ];
 
   Future<String?> getUID() async {
